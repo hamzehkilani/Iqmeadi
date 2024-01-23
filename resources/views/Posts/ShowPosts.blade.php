@@ -13,33 +13,33 @@
 </head>
 
 
-<body >
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success py-2" >
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success py-2">
         <div class="container-fluid">
-            <a class="nav-link scrollto active text-light" href="{{route('welcome')}}" style="font-size: 20px"> IQ MEDIA</a>
+            <a class="nav-link scrollto active text-light" href="{{ route('welcome') }}" style="font-size: 20px"> IQ
+                MEDIA</a>
 
         </div>
     </nav>
     <div class="container text-center ">
-        <h3 class="text-secondary mt-3">({{$clientName}})</h3>
-</div>
-  
-    <div class="row border bg-light">
-        @forelse ($images as $image)
-            <div class="col-md-12">
-                <div class="card-body">
+        <h3 class="text-secondary mt-3">({{ $clientName }})</h3>
+    </div>
+    @if (isset($images))
+        <div class="row border bg-light">
+            @foreach ($images as $image)
+                <div class="col-md-12">
+                    <div class="card-body">
 
-                    @foreach (json_decode($image->image) as $img)
-                        <img src='{{ asset("attachments/Posts/$clientName/" . $img) }}'
+                        <img src='{{ asset("attachments/Posts/$clientName/" . $image->image) }}'
                             style="width:300px;height:400px;" class="mb-3 m-4" alt="iqmedia">
 
-                    @endforeach
 
+                    </div>
                 </div>
-            </div>
-        @empty
-        <h2 class="mt-4 text-center" style="color: red">There are currently no Images for the client</h2>
-        @endforelse
+            @endforeach
+        @else
+            <h2 class="mt-4 text-center" style="color: red">There are currently no Images for the client</h2>
+    @endif
     </div>
 </body>
 
